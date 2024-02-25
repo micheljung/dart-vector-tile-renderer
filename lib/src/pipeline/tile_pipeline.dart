@@ -39,15 +39,12 @@ class TilePipeline {
     List<List<ThemeLayer>> layerGroups = _group(theme.layers);
     final allStages =
         layerGroups.map((e) => LayerPipelineStage(layers: e)).toList();
-    stages = tile.tileset.tiles.isEmpty
-        ? allStages.where((s) => !s.requiresTileData).toList()
-        : allStages;
+    stages = tile.tileset.tiles.isEmpty ? [] : allStages;
   }
 }
 
 abstract class PipelineStage {
   final String id;
-  abstract final bool requiresTileData;
   abstract final Set<ThemeLayerType> layerTypes;
 
   PipelineStage({required this.id});

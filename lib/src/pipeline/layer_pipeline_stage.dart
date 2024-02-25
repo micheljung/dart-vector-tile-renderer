@@ -11,13 +11,10 @@ import 'tile_pipeline.dart';
 class LayerPipelineStage extends PipelineStage {
   final List<ThemeLayer> layers;
   @override
-  late final bool requiresTileData;
-  @override
   late final Set<ThemeLayerType> layerTypes;
 
   LayerPipelineStage({required this.layers})
       : super(id: '${layers.first.id}-${layers.last.id}') {
-    requiresTileData = layers.any((e) => e.type != ThemeLayerType.background);
     layerTypes = layers.map((e) => e.type).toSet();
   }
 
